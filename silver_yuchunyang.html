@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阪急阪神百货店VIP会员</title>
+    <style>
+        body {
+            background-color: #f7f2ed;
+            margin: 0;
+            padding: 0;
+        }
+        .vertical-images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .vertical-images img {
+            max-width: 100%;
+            height: auto;
+            margin: 0;
+        }
+        .datetime {
+            position: absolute;
+            top: 19%; /* 1/4 position from the top of the image */
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgb(246, 7, 7);
+            font-size: 1.45em; /* Relative font size */
+            font-weight: bold;
+            font-family: system-ui;
+            white-space: nowrap; /* Prevent line break */
+        }
+    </style>
+</head>
+<body>
+    <div class="vertical-images">
+        <div class="datetime" id="datetime"></div>
+        <img src="img/yusilver.png" alt="Image 1">
+    </div>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const formattedDateTime = `${year}/${month}/${day} ${hours}:${minutes}:${seconds}`;
+            document.getElementById('datetime').textContent = formattedDateTime;
+        }
+
+        // Update the date and time every second
+        setInterval(updateDateTime, 1000);
+        // Initial call to display the date and time immediately upon loading
+        updateDateTime();
+    </script>
+</body>
+</html>
