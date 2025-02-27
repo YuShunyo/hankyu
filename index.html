@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vertical Images</title>
+    <title>阪急阪神百货店VIP会员</title>
     <style>
+        body {
+            background-color: #f7f2ed;
+            margin: 0;
+            padding: 0;
+        }
         .vertical-images {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         .vertical-images img {
-            margin: 10px 0;
+            max-width: 100%;
+            height: auto;
+            margin: 0;
         }
     </style>
 </head>
 <body>
     <div class="vertical-images">
         <img src="img/gold.png" alt="Image 1">
-        <img src="img/silver.png" alt="Image 2">
     </div>
 </body>
 </html>
