@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,25 +35,38 @@
         button:hover {
             background-color: #0056b3;
         }
+        .hint {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #666;
+        }
     </style>
 </head>
 <body>
     <h2>请输入您的名字</h2>
-    <h3>（大写拼音）</h3>
+    <p class="hint">请输入您的大写拼音（如：ZHANG SAN）</p>
     <input type="text" id="nameInput" placeholder="输入名字">
     <button onclick="saveName()">提交</button>
 
     <script>
         function saveName() {
-            const name = document.getElementById('nameInput').value.trim();
+            const inputField = document.getElementById('nameInput');
+            let name = inputField.value.trim().toUpperCase(); // 自动转换为大写拼音
+
             if (name) {
                 localStorage.setItem('userName', name);
-                
-                window.location.href = 'nameGold.html'; // 跳转到主页面
+                window.location.href = 'nameGold.html';
             } else {
                 alert('请输入有效的名字！');
+                inputField.focus();
             }
         }
+
+        document.getElementById('nameInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                saveName();
+            }
+        });
     </script>
 </body>
 </html>
