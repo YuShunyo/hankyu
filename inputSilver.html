@@ -47,7 +47,7 @@
             const name = document.getElementById('nameInput').value.trim();
             if (name) {
                 localStorage.setItem('userName', name);
-                alert('名字已保存，即将跳转到主页面！');
+                
                 window.location.href = 'nameSilver.html'; // 跳转到主页面
             } else {
                 alert('请输入有效的名字！');

@@ -23,18 +23,18 @@
         }
         .name {
             position: absolute;
-            top: 15%; /* 显示在时间的上方 */
+            top: 14.5%; /* 显示在时间的上方 */
             left: 50%;
             transform: translateX(-50%);
             color: black;
-            font-size: 1.7em; /* 比时间稍微大一点 */
-            font-weight: bold;
+            font-size: 1.7em; /* 比时间大一点 */
             font-family: system-ui, sans-serif;
             white-space: nowrap;
+            font-weight: normal; /* 取消加粗 */
         }
         .datetime {
             position: absolute;
-            top: 19%;
+            top: 18.5%; /* 1/4 位置 */
             left: 50%;
             transform: translateX(-50%);
             color: rgb(246, 7, 7);
@@ -74,7 +74,7 @@
         // 更新时间
         setInterval(updateDateTime, 1000);
         updateDateTime();
-        loadName(); // 加载存储的名字
+        loadName(); // 读取并显示存储的名字
     </script>
 </body>
 </html>
