@@ -28,7 +28,7 @@ input {
     flex-direction: column; /* 一列排列 */
     gap: 10px;
     width: 100%;
-    max-width: 180px; /* 按钮比输入框略短 */
+    max-width: 150px; /* 按钮比输入框略短 */
     margin-top: 15px;
 }
 button {
@@ -83,8 +83,9 @@ fetch('cardConfig.json')
   })
   .catch(err => console.error('加载卡主列表失败', err));
 
+// 点击按钮处理
 function handleClick(owner) {
-  const name = inputField.value.trim().toUpperCase();
+  let name = inputField.value.trim().toUpperCase();
   if (!name) {
     name = "ZHANG SAN"; // 默认名字
   }
