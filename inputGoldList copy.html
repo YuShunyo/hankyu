@@ -13,7 +13,6 @@ body {
     justify-content: center;
     height: 100vh;
     background-color: #f7f2ed;
-    margin: 0;
 }
 input {
     padding: 10px;
@@ -31,17 +30,13 @@ input {
     gap: 10px;
 }
 button {
-    flex: 1 1 calc(33.33% - 10px); /* 每行3个按钮 */
-    max-width: 200px;               /* 可选最大宽度 */
-    min-width: 150px;               /* 可选最小宽度 */
-    padding: 10px 0;                /* 高度一致 */
+    padding: 10px 20px;
     font-size: 1.1em;
     border: none;
     border-radius: 5px;
     background-color: #007bff;
     color: white;
     cursor: pointer;
-    text-align: center;
 }
 button:hover {
     background-color: #0056b3;
@@ -65,10 +60,7 @@ button:hover {
 <script>
 const inputField = document.getElementById('nameInput');
 const group = document.getElementById('buttonGroup');
-
-inputField.addEventListener('input', () => {
-    inputField.value = inputField.value.toUpperCase();
-});
+inputField.addEventListener('input', () => inputField.value = inputField.value.toUpperCase());
 
 // 从 JSON 加载卡主列表
 fetch('cardConfig.json')
@@ -76,12 +68,11 @@ fetch('cardConfig.json')
   .then(data => {
     Object.keys(data).forEach(owner => {
       const btn = document.createElement('button');
-      btn.textContent = `卡主: ${owner}`;
+      btn.textContent = `卡主:${owner}`;
       btn.addEventListener('click', () => handleClick(owner));
       group.appendChild(btn);
     });
-  })
-  .catch(err => console.error('加载卡主列表失败', err));
+  });
 
 function handleClick(owner) {
   const name = inputField.value.trim().toUpperCase();
