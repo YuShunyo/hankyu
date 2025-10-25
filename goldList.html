@@ -5,46 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>阪急阪神百货店VIP会员</title>
 <style>
-    body {
-        background-color: #f7f2ed;
-        margin: 0;
-        padding: 0;
-    }
-    .vertical-images {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-    }
-    .vertical-images img {
-        max-width: 100%;
-        height: auto;
-        margin: 0;
-    }
-    .name {
-        position: absolute;
-        top: 14.8%;
-        left: 50%;
-        transform: translateX(-50%);
-        color: rgb(21, 20, 20);
-        font-size: 1.55em;
-        font-weight: normal;
-        font-family: system-ui, sans-serif;
-        white-space: nowrap;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
-    .datetime {
-        position: absolute;
-        top: 19%;
-        left: 50%;
-        transform: translateX(-50%);
-        color: rgb(246, 7, 7);
-        font-size: 1.45em;
-        font-weight: bold;
-        font-family: system-ui, sans-serif;
-        white-space: nowrap;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
+body {
+    background-color: #f7f2ed;
+    margin: 0;
+    padding: 0;
+}
+.vertical-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.vertical-images img {
+    max-width: 100%;
+    height: auto;
+}
+.name {
+    position: absolute;
+    top: 14.8%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(21,20,20);
+    font-size: 1.55em;
+    font-family: system-ui, sans-serif;
+    white-space: nowrap;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+.datetime {
+    position: absolute;
+    top: 19%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(246,7,7);
+    font-size: 1.45em;
+    font-weight: bold;
+    font-family: system-ui, sans-serif;
+    white-space: nowrap;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
 </style>
 </head>
 <body>
@@ -56,35 +54,31 @@
 
 <script>
 function updateDateTime() {
-    const now = new Date();
-    const formatted = now.toLocaleString('zh-CN', {
-        year: 'numeric', month: '2-digit', day: '2-digit',
-        hour: '2-digit', minute: '2-digit', second: '2-digit'
-    }).replace(/\//g, '/');
-    document.getElementById('datetime').textContent = formatted;
+  const now = new Date();
+  const formatted = now.toLocaleString('zh-CN', {
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
+  });
+  document.getElementById('datetime').textContent = formatted;
 }
 
-function loadCard() {
-    const name = localStorage.getItem('userName');
-    const cardOwner = localStorage.getItem('cardOwner');
+async function loadCard() {
+  const name = localStorage.getItem('userName');
+  const cardOwner = localStorage.getItem('cardOwner');
 
-    if (!name || !cardOwner) {
-        window.location.href = 'index.html';
-        return;
-    }
+  if (!name || !cardOwner) {
+    window.location.href = 'inputGoldList.html';
+    return;
+  }
 
-    document.getElementById('name').textContent = name;
+  document.getElementById('name').textContent = name;
 
-    // 不同卡主对应不同图片
-    const cardImages = {
-        WZM: 'img/goldList/wzm.png',
-        YCN: 'img/goldList/ycn.png',
-        XXX: 'img/goldList/xxx.png'
-        // 后续新增卡主，只需在这里加一行
-    };
+  const res = await fetch('cardConfig.json');
+  const data = await res.json();
+  const imgPath = data[cardOwner] || 'img/default_card.png';
 
-    const imgPath = cardImages[cardOwner] || 'img/default_card.png';
-    document.getElementById('cardImage').src = imgPath;
+  // 加个时间戳防缓存
+  document.getElementById('cardImage').src = `${imgPath}?v=${Date.now()}`;
 }
 
 setInterval(updateDateTime, 1000);
