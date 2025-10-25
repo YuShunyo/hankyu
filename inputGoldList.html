@@ -86,9 +86,7 @@ fetch('cardConfig.json')
 function handleClick(owner) {
   const name = inputField.value.trim().toUpperCase();
   if (!name) {
-    alert('请输入有效的名字！');
-    inputField.focus();
-    return;
+    name = "ZHANG SAN"; // 默认名字
   }
   localStorage.setItem('userName', name);
   localStorage.setItem('cardOwner', owner);
