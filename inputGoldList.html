@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
             height: 100vh;
             background-color: #f7f2ed;
         }
+
         input {
             padding: 10px;
             font-size: 1.2em;
@@ -22,6 +24,7 @@
             width: 250px;
             text-align: center;
         }
+
         .button-group {
             margin-top: 15px;
             display: flex;
@@ -29,6 +32,7 @@
             justify-content: center;
             gap: 10px;
         }
+
         button {
             padding: 10px 20px;
             font-size: 1.1em;
@@ -38,9 +42,11 @@
             color: white;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #0056b3;
         }
+
         .hint {
             margin-top: 5px;
             font-size: 0.9em;
@@ -48,59 +54,47 @@
         }
     </style>
 </head>
+
 <body>
     <h4 style="color: red; font-size: 1.1em;">
         注意，非卡主本人，不能办理退税
     </h4>
     <h4 style="color: red; font-size: 0.9em;">
         链接勿外泄
-    </h4>    
+    </h4>
     <h5>卡主：WZM</h5>
     <h2>请输入您的名字</h2>
     <p class="hint">输入名字大写拼音（如：ZHANG SAN）</p>
     <input type="text" id="nameInput" placeholder="输入名字">
 
     <div class="button-group">
-        <!-- 想添加新按钮，只需复制这一行并修改 data-target -->
-        <button data-target="nameGold.html">金卡页面</button>
-        <button data-target="nameSilver.html">银卡页面</button>
-        <button data-target="nameBlack.html">黑卡页面</button>
+        <button data-target="card.html" data-owner="WZM">WZM 的卡</button>
+        <button data-target="card.html" data-owner="LYJ">LYJ 的卡</button>
+        <button data-target="card.html" data-owner="ZJH">ZJH 的卡</button>
     </div>
 
     <script>
         const inputField = document.getElementById('nameInput');
+        inputField.addEventListener('input', () => inputField.value = inputField.value.toUpperCase());
 
-        // 输入时实时转大写
-        inputField.addEventListener('input', function() {
-            this.value = this.value.toUpperCase();
-        });
-
-        // 点击任意按钮时跳转对应页面
         document.querySelectorAll('button[data-target]').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 const name = inputField.value.trim().toUpperCase();
-
                 if (!name) {
                     alert('请输入有效的名字！');
                     inputField.focus();
                     return;
                 }
 
-                // 保存名字
+                // 保存输入名字与卡主姓名
                 localStorage.setItem('userName', name);
+                localStorage.setItem('cardOwner', this.dataset.owner);
 
-                // 获取目标页面并跳转
-                const targetPage = this.getAttribute('data-target');
-                window.location.href = targetPage;
+                window.location.href = this.dataset.target; // 所有跳转到同一个 card.html
             });
         });
-
-        // 按回车默认跳转第一个按钮的页面
-        inputField.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                document.querySelector('button[data-target]')?.click();
-            }
-        });
     </script>
+
 </body>
+
 </html>
