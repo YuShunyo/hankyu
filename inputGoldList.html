@@ -20,21 +20,20 @@ input {
     font-size: 1.2em;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 250px;
+    width: 250px; /* 输入框宽度 */
     text-align: center;
 }
 .button-group {
-    margin-top: 15px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column; /* 一列排列 */
     gap: 10px;
+    width: 100%;
+    max-width: 200px; /* 按钮比输入框略短 */
+    margin-top: 15px;
 }
 button {
-    flex: 1 1 calc(33.33% - 10px); /* 每行3个按钮 */
-    max-width: 200px;               /* 可选最大宽度 */
-    min-width: 150px;               /* 可选最小宽度 */
-    padding: 10px 0;                /* 高度一致 */
+    width: 100%;       /* 占满父容器 */
+    padding: 10px 0;   /* 高度统一 */
     font-size: 1.1em;
     border: none;
     border-radius: 5px;
@@ -66,11 +65,12 @@ button:hover {
 const inputField = document.getElementById('nameInput');
 const group = document.getElementById('buttonGroup');
 
+// 输入自动大写
 inputField.addEventListener('input', () => {
     inputField.value = inputField.value.toUpperCase();
 });
 
-// 从 JSON 加载卡主列表
+// 加载卡主列表
 fetch('cardConfig.json')
   .then(res => res.json())
   .then(data => {
