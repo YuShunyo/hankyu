@@ -62,15 +62,14 @@
     <h4 style="color: red; font-size: 0.9em;">
         链接勿外泄
     </h4>
-    <h5>卡主：WZM</h5>
     <h2>请输入您的名字</h2>
     <p class="hint">输入名字大写拼音（如：ZHANG SAN）</p>
     <input type="text" id="nameInput" placeholder="输入名字">
 
     <div class="button-group">
-        <button data-target="card.html" data-owner="WZM">WZM 的卡</button>
-        <button data-target="card.html" data-owner="LYJ">LYJ 的卡</button>
-        <button data-target="card.html" data-owner="ZJH">ZJH 的卡</button>
+        <button data-target="goldList.html" data-owner="WZM">卡主:WZM</button>
+        <button data-target="goldList.html" data-owner="YCN">卡主:YCN</button>
+        <button data-target="goldList.html" data-owner="XXX">卡主:XXX</button>
     </div>
 
     <script>
@@ -90,7 +89,7 @@
                 localStorage.setItem('userName', name);
                 localStorage.setItem('cardOwner', this.dataset.owner);
 
-                window.location.href = this.dataset.target; // 所有跳转到同一个 card.html
+                window.location.href = this.dataset.target; // 所有跳转到同一个 goldList.html
             });
         });
     </script>
