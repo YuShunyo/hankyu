@@ -1,7 +1,7 @@
 {
-  "WZM-410954": { "img": "img/goldList/wzm.png", "defaultName": "WANG HAO" },
-  "XXX-123456": { "img": "img/goldList/xxx.png", "defaultName": "WANG HAO" },
-  "报名": { "img": "img/goldList/xxx.png", "defaultName": "WANG HAO" },
-  "添加": { "img": "img/goldList/xxx.png", "defaultName": "WANG HAO" },
-  "卡片": { "img": "img/goldList/xxx.png", "defaultName": "WANG HAO" }
+  "WZM-410954": { "img": "img/goldList/wzm.png", "defaultName": "WANG HAO1" },
+  "XXX-123456": { "img": "img/goldList/xxx.png", "defaultName": "WANG HAO2" },
+  "报名": { "img": "img/goldList/xxx.png", "defaultName": "WANG HAO3" },
+  "添加": { "img": "img/goldList/xxx.png", "defaultName": "WANG HAO4" },
+  "卡片": { "img": "img/goldList/xxx.png", "defaultName": "WANG HAO5" }
 }
