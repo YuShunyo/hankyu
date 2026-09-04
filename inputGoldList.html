@@ -65,6 +65,8 @@ button:hover {
 const inputField = document.getElementById('nameInput');
 const group = document.getElementById('buttonGroup');
 
+let cardData = {}; // 保存整个配置，供 handleClick 使用
+
 // 输入自动大写
 inputField.addEventListener('input', () => {
     inputField.value = inputField.value.toUpperCase();
@@ -74,6 +76,7 @@ inputField.addEventListener('input', () => {
 fetch('cardConfig.json')
   .then(res => res.json())
   .then(data => {
+    cardData = data;
     Object.keys(data).forEach(owner => {
       const btn = document.createElement('button');
       btn.textContent = `卡主: ${owner}`;
@@ -87,7 +90,8 @@ fetch('cardConfig.json')
 function handleClick(owner) {
   let name = inputField.value.trim().toUpperCase();
   if (!name) {
-    name = "WANG HAO"; // 默认名字
+    // 每个卡主使用各自的默认名字，取不到则兜底
+    name = (cardData[owner] && cardData[owner].defaultName) || "WANG HAO";
   }
   localStorage.setItem('userName', name);
   localStorage.setItem('cardOwner', owner);

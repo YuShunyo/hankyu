@@ -75,7 +75,8 @@ async function loadCard() {
 
   const res = await fetch('cardConfig.json');
   const data = await res.json();
-  const imgPath = data[cardOwner] || 'img/default_card.png';
+  const cardInfo = data[cardOwner];
+  const imgPath = (cardInfo && cardInfo.img) || 'img/default_card.png';
 
   // 加个时间戳防缓存
   document.getElementById('cardImage').src = `${imgPath}?v=${Date.now()}`;
